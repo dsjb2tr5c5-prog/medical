@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>診察の流れ - 最終完成版</title>
+
+<style>
+/* --- 1. 基本リセット --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  background-color: #ffffff;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+}
+
+.page-image {
+  width: 100%;
+  display: block;
+}
+
+/* --- 2. 共通ボタンデザイン（現在は隠し状態） --- */
+.btn-overlay {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  z-index: 100;
+  white-space: nowrap;
+  padding: 12px 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.back { background-color: #cfd8dc; color: #455a64; font-size: 16px; }
+.reserve { background-color: #ffd600; color: #000000; font-size: 20px; }
+
+/* --- 3. 19枚目専用：豪華オレンジボタン --- */
+.btn-special {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  z-index: 100;
+}
+
+/* 「＼ 今すぐチェック！ ／」 */
+.check-text {
+  color: #d32f2f;
+  font-weight: 900;
+  font-size: 24px;
+  /* ★ここの数字を 8px から 20px に増やしてボタンと離しました */
+  margin-bottom: 20px; 
+  text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
+}
+
+/* ボタン本体 */
+.btn-orange-body {
+  width: 100%;
+  height: 75px;
+  background: linear-gradient(to bottom, #ff9d4d, #ff6600);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 0 #cc5200;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* 黄色いボックス文字 */
+.char-box {
+  background-color: #ffff00;
+  color: #ff4d00;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 0 1px;
+  border-radius: 3px;
+  font-size: 20px;
+  font-weight: 900;
+  vertical-align: middle;
+}
+
+/* 矢印マーク */
+.arrow-circle {
+  background: #fff;
+  color: #ff6600;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.btn-special:active { transform: translateX(-50%) translateY(2px); }
+</style>
+</head>
+
+<body>
+
+  <div class="image-wrapper">
+    <img src="S__77135884.jpg" class="page-image">
+    </div>
+
+  <img src="S__77152259.jpg" class="page-image">
+  <img src="S__77152260.jpg" class="page-image">
+  <img src="S__77152261.jpg" class="page-image">
+  <img src="S__77152263.jpg" class="page-image">
+  <img src="S__77152264.jpg" class="page-image">
+  <img src="S__77152265.jpg" class="page-image">
+  <img src="S__77152266.jpg" class="page-image">
+  <img src="S__77152267.jpg" class="page-image">
+
+  <div class="image-wrapper">
+    <img src="S__77152268.jpg" class="page-image">
+    </div>
+
+  <img src="S__77152269.jpg" class="page-image">
+  <img src="S__77152270.jpg" class="page-image">
+  <img src="S__77152271.jpg" class="page-image">
+  <img src="S__77152272.jpg" class="page-image">
+  <img src="S__77152273.jpg" class="page-image">
+  <img src="S__77152274.jpg" class="page-image">
+  <img src="S__77152275.jpg" class="page-image">
+  <img src="S__77152276.jpg" class="page-image">
+
+  <div class="image-wrapper">
+    <img src="S__77152277.jpg" class="page-image">
+    
+    <a href="https://liff.line.me/2009400645-19jige5V/salon/dateselector/week/2026/3/15?liff_id=2009400645-19jige5V&is=GN9yXejuAI" class="btn-special" style="top: 73%;">
+      <div class="check-text">＼ 今すぐチェック！ ／</div>
+      
+      <div class="btn-orange-body">
+        <span class="char-box">予</span>
+        <span class="char-box">約</span>
+        <span class="char-box">の</span>
+        <span class="char-box">空</span>
+        <span class="char-box">き</span>
+        <span class="char-box">状</span>
+        <span class="char-box">況</span>
+        <span style="margin-left:5px;">を確認する！</span>
+        <span class="arrow-circle">▶︎</span>
+      </div>
+    </a>
+  </div>
+
+</body>
+</html>

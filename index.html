@@ -3,15 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>診察の流れ - 最終完成版</title>
+<title>診察の流れ - 安全策完成版</title>
 
 <style>
-/* --- 1. 基本リセット --- */
+/* --- 1. 全体の安全策（PC対策） --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
-  margin: 0;
+  margin: 0 auto;        /* PCで中央に寄せる */
+  max-width: 500px;      /* ★PCで見ても横幅は最大500pxに制限（超重要） */
   font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-  background-color: #ffffff;
+  background-color: #f5f5f5; /* PCで見ている時の背景色（外側） */
+}
+
+.main-content {
+  background-color: #ffffff; /* ページ自体の背景色 */
+  min-height: 100vh;
 }
 
 .image-wrapper {
@@ -25,29 +32,12 @@ body {
   display: block;
 }
 
-/* --- 2. 共通ボタンデザイン（現在は隠し状態） --- */
-.btn-overlay {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 5px;
-  z-index: 100;
-  white-space: nowrap;
-  padding: 12px 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-.back { background-color: #cfd8dc; color: #455a64; font-size: 16px; }
-.reserve { background-color: #ffd600; color: #000000; font-size: 20px; }
-
-/* --- 3. 19枚目専用：豪華オレンジボタン --- */
+/* --- 2. 19枚目専用：自動サイズ調整オレンジボタン --- */
 .btn-special {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 92%;
+  width: 96%; /* 左右に少しだけ余裕を持たせる */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,58 +45,63 @@ body {
   z-index: 100;
 }
 
-/* 「＼ 今すぐチェック！ ／」 */
+/* ＼ 今すぐチェック！ ／ */
 .check-text {
   color: #d32f2f;
   font-weight: 900;
-  font-size: 24px;
-  /* ★ここの数字を 8px から 20px に増やしてボタンと離しました */
-  margin-bottom: 20px; 
+  /* 最小14px、PC最大24px。画面幅に合わせて可変 */
+  font-size: clamp(14px, 5vw, 24px); 
+  margin-bottom: clamp(10px, 3vw, 20px); 
   text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
+  white-space: nowrap;
 }
 
 /* ボタン本体 */
 .btn-orange-body {
   width: 100%;
-  height: 75px;
+  min-height: clamp(50px, 12vw, 75px); 
   background: linear-gradient(to bottom, #ff9d4d, #ff6600);
   border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 8px;
   box-shadow: 0 5px 0 #cc5200;
   color: #ffffff;
   font-weight: bold;
-  font-size: 20px;
+  /* 文字サイズを安全な範囲に設定 */
+  font-size: clamp(11px, 3.5vw, 19px); 
+  white-space: nowrap; /* 絶対に改行させない */
 }
 
-/* 黄色いボックス文字 */
+/* 一文字ずつの四角いボックス */
 .char-box {
   background-color: #ffff00;
   color: #ff4d00;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  margin: 0 1px;
+  /* ボックス自体も画面に合わせて伸縮 */
+  width: clamp(20px, 6.2vw, 32px);
+  height: clamp(20px, 6.2vw, 32px);
+  margin: 0 0.3vw;
   border-radius: 3px;
-  font-size: 20px;
+  font-size: clamp(12px, 4vw, 20px);
   font-weight: 900;
-  vertical-align: middle;
 }
 
-/* 矢印マーク */
+/* 右側の「▶︎」 */
 .arrow-circle {
   background: #fff;
   color: #ff6600;
-  width: 28px;
-  height: 28px;
+  width: clamp(18px, 5vw, 28px);
+  height: clamp(18px, 5vw, 28px);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 10px;
+  margin-left: 4px;
+  font-size: clamp(9px, 2.5vw, 14px);
 }
 
 .btn-special:active { transform: translateX(-50%) translateY(2px); }
@@ -115,6 +110,7 @@ body {
 
 <body>
 
+<div class="main-content">
   <div class="image-wrapper">
     <img src="S__77135884.jpg" class="page-image">
     </div>
@@ -155,11 +151,12 @@ body {
         <span class="char-box">き</span>
         <span class="char-box">状</span>
         <span class="char-box">況</span>
-        <span style="margin-left:5px;">を確認する！</span>
+        <span style="margin-left:4px;">を確認する！</span>
         <span class="arrow-circle">▶︎</span>
       </div>
     </a>
   </div>
+</div>
 
 </body>
 </html>

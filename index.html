@@ -3,106 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>診察の流れ - 安全策完成版</title>
+<title>診察の流れ - 最終調整版</title>
 
 <style>
-/* --- 1. 全体の安全策（PC対策） --- */
+/* --- 1. 基本設定（PC対策・レスポンシブ） --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
-  margin: 0 auto;        /* PCで中央に寄せる */
-  max-width: 500px;      /* ★PCで見ても横幅は最大500pxに制限（超重要） */
+  margin: 0 auto;
+  max-width: 500px; 
   font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-  background-color: #f5f5f5; /* PCで見ている時の背景色（外側） */
+  background-color: #f5f5f5;
 }
+.main-content { background-color: #ffffff; min-height: 100vh; }
+.image-wrapper { position: relative; width: 100%; line-height: 0; }
+.page-image { width: 100%; display: block; }
 
-.main-content {
-  background-color: #ffffff; /* ページ自体の背景色 */
-  min-height: 100vh;
-}
-
-.image-wrapper {
-  position: relative;
-  width: 100%;
-  line-height: 0;
-}
-
-.page-image {
-  width: 100%;
-  display: block;
-}
-
-/* --- 2. 19枚目専用：自動サイズ調整オレンジボタン --- */
+/* --- 2. オレンジ豪華ボタン（3, 15, 19枚目用） --- */
 .btn-special {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 96%; /* 左右に少しだけ余裕を持たせる */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  z-index: 100;
+  position: absolute; left: 50%; transform: translateX(-50%);
+  width: 94%; display: flex; flex-direction: column; align-items: center;
+  text-decoration: none; z-index: 100;
 }
-
-/* ＼ 今すぐチェック！ ／ */
 .check-text {
-  color: #d32f2f;
-  font-weight: 900;
-  /* 最小14px、PC最大24px。画面幅に合わせて可変 */
-  font-size: clamp(14px, 5vw, 24px); 
-  margin-bottom: clamp(10px, 3vw, 20px); 
+  color: #d32f2f; font-weight: 900; font-size: clamp(14px, 5vw, 22px); 
+  margin-bottom: clamp(10px, 3vw, 15px); 
   text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
   white-space: nowrap;
 }
-
-/* ボタン本体 */
 .btn-orange-body {
-  width: 100%;
-  min-height: clamp(50px, 12vw, 75px); 
+  width: 100%; min-height: clamp(50px, 12vw, 70px); 
   background: linear-gradient(to bottom, #ff9d4d, #ff6600);
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 8px;
-  box-shadow: 0 5px 0 #cc5200;
-  color: #ffffff;
-  font-weight: bold;
-  /* 文字サイズを安全な範囲に設定 */
-  font-size: clamp(11px, 3.5vw, 19px); 
-  white-space: nowrap; /* 絶対に改行させない */
+  border-radius: 50px; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 5px 0 #cc5200; color: #ffffff; font-weight: bold;
+  font-size: clamp(11px, 3.5vw, 18px); white-space: nowrap;
 }
-
-/* 一文字ずつの四角いボックス */
 .char-box {
-  background-color: #ffff00;
-  color: #ff4d00;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  /* ボックス自体も画面に合わせて伸縮 */
-  width: clamp(20px, 6.2vw, 32px);
-  height: clamp(20px, 6.2vw, 32px);
-  margin: 0 0.3vw;
-  border-radius: 3px;
-  font-size: clamp(12px, 4vw, 20px);
-  font-weight: 900;
+  background-color: #ffff00; color: #ff4d00; display: inline-flex; align-items: center; justify-content: center;
+  width: clamp(20px, 6.2vw, 30px); height: clamp(20px, 6.2vw, 30px);
+  margin: 0 0.3vw; border-radius: 3px; font-size: clamp(12px, 4vw, 18px); font-weight: 900;
 }
 
-/* 右側の「▶︎」 */
-.arrow-circle {
-  background: #fff;
-  color: #ff6600;
-  width: clamp(18px, 5vw, 28px);
-  height: clamp(18px, 5vw, 28px);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 4px;
-  font-size: clamp(9px, 2.5vw, 14px);
+/* --- 3. ピンク詳細ボタン（7, 11枚目用） --- */
+.btn-pink-body {
+  width: 100%; min-height: clamp(50px, 12vw, 65px); 
+  background: linear-gradient(to bottom, #f78da7, #ed5276);
+  border-radius: 50px; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 0 #c13154; color: #ffffff; font-weight: bold;
+  font-size: clamp(14px, 4.5vw, 20px); white-space: nowrap;
 }
+.arrow-circle {
+  background: #fff; color: #ff6600; 
+  width: clamp(20px, 5vw, 26px); height: clamp(20px, 5vw, 26px);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-left: 8px;
+}
+.arrow-pink { color: #ed5276; }
 
 .btn-special:active { transform: translateX(-50%) translateY(2px); }
 </style>
@@ -111,51 +65,78 @@ body {
 <body>
 
 <div class="main-content">
-  <div class="image-wrapper">
-    <img src="S__77135884.jpg" class="page-image">
-    </div>
 
+  <div class="image-wrapper"><img src="S__77135884.jpg" class="page-image"></div>
   <img src="S__77152259.jpg" class="page-image">
-  <img src="S__77152260.jpg" class="page-image">
+
+  <div class="image-wrapper">
+    <img src="S__77152260.jpg" class="page-image">
+    <a href="https://liff.line.me/2009400645-19jige5V/salon/dateselector/week/2026/3/15?liff_id=2009400645-19jige5V&is=GN9yXejuAI" class="btn-special" style="top: 73%;">
+      <div class="check-text">＼ 今すぐチェック！ ／</div>
+      <div class="btn-orange-body">
+        <span class="char-box">予</span><span class="char-box">約</span><span class="char-box">の</span><span class="char-box">空</span><span class="char-box">き</span><span class="char-box">状</span><span class="char-box">況</span>
+        <span style="margin-left:4px;">を確認する！</span><span class="arrow-circle">▶︎</span>
+      </div>
+    </a>
+  </div>
+
   <img src="S__77152261.jpg" class="page-image">
   <img src="S__77152263.jpg" class="page-image">
   <img src="S__77152264.jpg" class="page-image">
-  <img src="S__77152265.jpg" class="page-image">
+
+  <div class="image-wrapper">
+    <img src="S__77152265.jpg" class="page-image">
+    <a href="https://dsjb2tr5c5-prog.github.io/-1/" class="btn-special" style="top: 80%;"> 
+      <div class="btn-pink-body">
+        お薬の詳細はこちらから <span class="arrow-circle arrow-pink">▶︎</span>
+      </div>
+    </a>
+  </div>
+
   <img src="S__77152266.jpg" class="page-image">
   <img src="S__77152267.jpg" class="page-image">
 
-  <div class="image-wrapper">
-    <img src="S__77152268.jpg" class="page-image">
-    </div>
+  <div class="image-wrapper"><img src="S__77152268.jpg" class="page-image"></div>
 
-  <img src="S__77152269.jpg" class="page-image">
+  <div class="image-wrapper">
+    <img src="S__77152269.jpg" class="page-image">
+    <a href="https://dsjb2tr5c5-prog.github.io/-1/" class="btn-special" style="top: 89.5%;"> 
+      <div class="btn-pink-body">
+        お薬の詳細はこちらから <span class="arrow-circle arrow-pink">▶︎</span>
+      </div>
+    </a>
+  </div>
+
   <img src="S__77152270.jpg" class="page-image">
   <img src="S__77152271.jpg" class="page-image">
   <img src="S__77152272.jpg" class="page-image">
-  <img src="S__77152273.jpg" class="page-image">
+
+  <div class="image-wrapper">
+    <img src="S__77152273.jpg" class="page-image">
+    <a href="https://liff.line.me/2009400645-19jige5V/salon/dateselector/week/2026/3/15?liff_id=2009400645-19jige5V&is=GN9yXejuAI" class="btn-special" style="top: 73%;">
+      <div class="check-text">＼ 今すぐチェック！ ／</div>
+      <div class="btn-orange-body">
+        <span class="char-box">予</span><span class="char-box">約</span><span class="char-box">の</span><span class="char-box">空</span><span class="char-box">き</span><span class="char-box">状</span><span class="char-box">況</span>
+        <span style="margin-left:4px;">を確認する！</span><span class="arrow-circle">▶︎</span>
+      </div>
+    </a>
+  </div>
+
   <img src="S__77152274.jpg" class="page-image">
   <img src="S__77152275.jpg" class="page-image">
   <img src="S__77152276.jpg" class="page-image">
 
   <div class="image-wrapper">
     <img src="S__77152277.jpg" class="page-image">
-    
     <a href="https://liff.line.me/2009400645-19jige5V/salon/dateselector/week/2026/3/15?liff_id=2009400645-19jige5V&is=GN9yXejuAI" class="btn-special" style="top: 73%;">
       <div class="check-text">＼ 今すぐチェック！ ／</div>
-      
       <div class="btn-orange-body">
-        <span class="char-box">予</span>
-        <span class="char-box">約</span>
-        <span class="char-box">の</span>
-        <span class="char-box">空</span>
-        <span class="char-box">き</span>
-        <span class="char-box">状</span>
-        <span class="char-box">況</span>
-        <span style="margin-left:4px;">を確認する！</span>
-        <span class="arrow-circle">▶︎</span>
+        <span class="char-box">予</span><span class="char-box">約</span><span class="char-box">の</span><span class="char-box">空</span><span class="char-box">き</span><span class="char-box">状</span><span class="char-box">況</span>
+        <span style="margin-left:4px;">を確認する！</span><span class="arrow-circle">▶︎</span>
       </div>
     </a>
   </div>
+
 </div>
 
 </body>
